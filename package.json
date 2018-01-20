@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "develop": ""
+    "develop": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "supervisor server.js",
+    "client": "cd frontend && npm start"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,8 @@
   "homepage": "https://github.com/Mortuie/Flashcard#readme",
   "dependencies": {
     "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "http": "0.0.0",
     "supervisor": "^0.12.0"
   }
 }
