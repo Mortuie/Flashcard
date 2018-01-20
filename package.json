@@ -1,0 +1,25 @@
+{
+  "name": "flashcard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "develop": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mortuie/Flashcard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mortuie/Flashcard/issues"
+  },
+  "homepage": "https://github.com/Mortuie/Flashcard#readme",
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "supervisor": "^0.12.0"
+  }
+}
