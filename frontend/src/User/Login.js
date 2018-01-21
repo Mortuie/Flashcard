@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {css, StyleSheet} from 'aphrodite';
+import {connect} from 'react-redux';
 
-export default class Login extends Component {
+class Login extends Component {
 
     state = {
         username: '',
@@ -11,6 +12,7 @@ export default class Login extends Component {
 
     login = () => {
         console.log(this.state.username);
+        this.props.login();
     }
 
     render() {
@@ -70,3 +72,15 @@ const styles = StyleSheet.create({
 
     }
 });
+
+const mapStateToProps = (state) => {
+    return state;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: () => dispatch({type: 'LOGIN'}),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

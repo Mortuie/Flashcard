@@ -1,15 +1,4 @@
 import {combineReducers} from 'redux';
+import {user} from '../User';
 
-function userReducer(state = false, action) {
-    switch (action.type) {
-        case "LOGIN":
-            return true;
-        case "LOGOUT":
-            return false;
-        default:
-            return state;
-    }
-}
-
-
-export default combineReducers({userReducer});
+export default combineReducers({user});
