@@ -11,8 +11,8 @@ class Routes extends Component {
             <Switch>
                 <Route exact path="/" component={Homepage} />
                 <NonAuthroute path="/login" component={Login} redirect={'/'} loggedIn={this.props.user} />
-                <NonAuthroute path="/register" component={Register} redirect={'/'} />
-                <NonAuthroute path="/forgot" component={Forgot} redirect={'/'} />
+                <NonAuthroute path="/register" component={Register} redirect={'/'} loggedIn={this.props.user} />
+                <NonAuthroute path="/forgot" component={Forgot} redirect={'/'} loggedIn={this.props.user} />
             </Switch>
         );
     }

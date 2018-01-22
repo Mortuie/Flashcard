@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {css, StyleSheet} from 'aphrodite';
 import {connect} from 'react-redux';
+import {login} from './actions';
 
 class Login extends Component {
 
@@ -79,7 +80,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: () => dispatch({type: 'LOGIN'}),
+        login: () => dispatch(login()),
     };
 }
 

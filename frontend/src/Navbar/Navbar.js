@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {css, StyleSheet} from 'aphrodite';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {logout} from '../User/actions';
 
 class Navbar extends Component {
 
@@ -63,7 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => dispatch({type: 'LOGOUT'}),
+        logout: () => dispatch(logout()),
     };
 }
 
