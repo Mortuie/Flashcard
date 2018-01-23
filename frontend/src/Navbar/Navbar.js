@@ -10,12 +10,12 @@ class Navbar extends Component {
         if (this.props.user) { // logged in...
             return (
                 <ul className={css(styles.background)}>
-                    <li className={css(styles.title)}><Link className={css(styles.items)} to='/'>Flashcards</Link></li>
+                    <li className={css(styles.title)}><Link className={css(styles.items)} to='/stacks'>Flashcards</Link></li>
                     <li className={css(styles.nav)}><Link onClick={this.props.logout} className={css(styles.items)} to='/'>Logout</Link></li>
                     <li className={css(styles.nav)}><Link className={css(styles.items)} to='/newstack'>New Stack</Link></li>
                 </ul>
             );
-        } else { // logged in....
+        } else { // logged out...
             return (
                 <ul className={css(styles.background)}>
                     <li className={css(styles.title)}><Link className={css(styles.items)} to='/'>Flashcards</Link></li>

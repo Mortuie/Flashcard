@@ -4,6 +4,8 @@ import {Dummy} from '../Dummy';
 import {Login, Register, Forgot} from '../User';
 import {Homepage} from '../Homepage';
 import {connect} from 'react-redux';
+import {Newstack} from '../Newstack';
+
 
 class Routes extends Component {
     render() {
@@ -11,10 +13,11 @@ class Routes extends Component {
             <Switch>
                 <Route exact path="/" component={Dummy} />
                 <Authroute path='/stacks' component={Homepage} redirect={'/'} loggedIn={this.props.user} />
-                <Authroute path='/newstacks' component={Dummy} redirect={'/'} loggedIn={this.props.user} />
+                <Authroute path='/newstack' component={Newstack} redirect={'/'} loggedIn={this.props.user} />
                 <NonAuthroute path="/login" component={Login} redirect={'/stacks'} loggedIn={this.props.user} />
                 <NonAuthroute path="/register" component={Register} redirect={'/stacks'} loggedIn={this.props.user} />
                 <NonAuthroute path="/forgot" component={Forgot} redirect={'/stacks'} loggedIn={this.props.user} />
+                <Route path='*' component={Dummy} />
             </Switch>
         );
     }
