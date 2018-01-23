@@ -9,10 +9,12 @@ class Routes extends Component {
     render() {
         return (
             <Switch>
-                <Route exact path="/" component={Homepage} />
-                <NonAuthroute path="/login" component={Login} redirect={'/'} loggedIn={this.props.user} />
-                <NonAuthroute path="/register" component={Register} redirect={'/'} loggedIn={this.props.user} />
-                <NonAuthroute path="/forgot" component={Forgot} redirect={'/'} loggedIn={this.props.user} />
+                <Route exact path="/" component={Dummy} />
+                <Authroute path='/stacks' component={Homepage} redirect={'/'} loggedIn={this.props.user} />
+                <Authroute path='/newstacks' component={Dummy} redirect={'/'} loggedIn={this.props.user} />
+                <NonAuthroute path="/login" component={Login} redirect={'/stacks'} loggedIn={this.props.user} />
+                <NonAuthroute path="/register" component={Register} redirect={'/stacks'} loggedIn={this.props.user} />
+                <NonAuthroute path="/forgot" component={Forgot} redirect={'/stacks'} loggedIn={this.props.user} />
             </Switch>
         );
     }

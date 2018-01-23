@@ -12,7 +12,6 @@ class Login extends Component {
 
 
     login = () => {
-        console.log(this.state.username);
         this.props.login();
     }
 
