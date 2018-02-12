@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {css, StyleSheet} from 'aphrodite';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {logout} from '../User/actions';
 
 class Navbar extends Component {
 
@@ -9,12 +10,12 @@ class Navbar extends Component {
         if (this.props.user) { // logged in...
             return (
                 <ul className={css(styles.background)}>
-                    <li className={css(styles.title)}><Link className={css(styles.items)} to='/'>Flashcards</Link></li>
+                    <li className={css(styles.title)}><Link className={css(styles.items)} to='/stacks'>Flashcards</Link></li>
                     <li className={css(styles.nav)}><Link onClick={this.props.logout} className={css(styles.items)} to='/'>Logout</Link></li>
-                    <li className={css(styles.nav)}><Link className={css(styles.items)} to='/register'>Register</Link></li>
+                    <li className={css(styles.nav)}><Link className={css(styles.items)} to='/newstack'>New Stack</Link></li>
                 </ul>
             );
-        } else { // logged in....
+        } else { // logged out...
             return (
                 <ul className={css(styles.background)}>
                     <li className={css(styles.title)}><Link className={css(styles.items)} to='/'>Flashcards</Link></li>
@@ -63,7 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logout: () => dispatch({type: 'LOGOUT'}),
+        logout: () => dispatch(logout()),
     };
 }
 
