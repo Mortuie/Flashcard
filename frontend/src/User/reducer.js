@@ -1,11 +1,11 @@
 import {LOGIN, LOGOUT} from './actions';
 
-export default function userReducer(state = false, action) {
+export default function userReducer(state = {token: null}, action) {
     switch (action.type) {
         case LOGIN:
-            return true;
+            return {...state, token: action.token};
         case LOGOUT:
-            return false;
+            return {...state, token: null};
         default:
             return state;
     }

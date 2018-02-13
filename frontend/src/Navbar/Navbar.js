@@ -7,7 +7,7 @@ import {logout} from '../User/actions';
 class Navbar extends Component {
 
     getBar = () => {
-        if (this.props.user) { // logged in...
+        if (this.props.token) { // logged in...
             return (
                 <ul className={css(styles.background)}>
                     <li className={css(styles.title)}><Link className={css(styles.items)} to='/stacks'>Flashcards</Link></li>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    return state;
+    return state.user;
 }
 
 const mapDispatchToProps = (dispatch) => {

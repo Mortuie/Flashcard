@@ -12,11 +12,11 @@ class Routes extends Component {
         return (
             <Switch>
                 <Route exact path="/" component={Dummy} />
-                <Authroute path='/stacks' component={Homepage} redirect={'/'} loggedIn={this.props.user} />
-                <Authroute path='/newstack' component={Newstack} redirect={'/'} loggedIn={this.props.user} />
-                <NonAuthroute path="/login" component={Login} redirect={'/stacks'} loggedIn={this.props.user} />
-                <NonAuthroute path="/register" component={Register} redirect={'/stacks'} loggedIn={this.props.user} />
-                <NonAuthroute path="/forgot" component={Forgot} redirect={'/stacks'} loggedIn={this.props.user} />
+                <Authroute path='/stacks' component={Homepage} redirect={'/'} loggedIn={this.props.token} />
+                <Authroute path='/newstack' component={Newstack} redirect={'/'} loggedIn={this.props.token} />
+                <NonAuthroute path="/login" component={Login} redirect={'/stacks'} loggedIn={this.props.token} />
+                <NonAuthroute path="/register" component={Register} redirect={'/stacks'} loggedIn={this.props.token} />
+                <NonAuthroute path="/forgot" component={Forgot} redirect={'/stacks'} loggedIn={this.props.token} />
                 <Route path='*' component={Dummy} />
             </Switch>
         );
@@ -44,7 +44,7 @@ const NonAuthroute = ({loggedIn, component: Component, redirect: path, ...rest})
 );
 
 const mapStateToProps = (state) => {
-    return state;
+    return state.user;
 };
 
 const mapDispatchToProps = (dispatch) => {

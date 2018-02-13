@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {css, StyleSheet} from 'aphrodite';
 import {connect} from 'react-redux';
 import {login} from './actions';
+import axios from 'axios';
 
 class Login extends Component {
 
@@ -12,21 +13,31 @@ class Login extends Component {
 
 
     login = () => {
-        this.props.login();
+        const {username, password} = this.state;
+
+        if (!username || !password) {
+            alert('One field missing');
+        } else {
+            axios.post('/api/auth/login', {
+                username,
+                password,
+            }).then((res) => {
+                console.log(res);
+                this.props.login(res.data.token);
+            });
+        }
     }
 
     render() {
         return (
             <div className={css(styles.container)}>
                 <input 
-                    className={css(styles.input)}
                     placeholder="example@email.com" 
                     onChange={e => this.setState({username: e.target.value})}
                     value={this.state.username}
                 >
                 </input>
                 <input
-                    className={css(styles.input)}
                     type="password"
                     placeholder="*****"
                     onChange={e => this.setState({password: e.target.value})}
@@ -34,7 +45,6 @@ class Login extends Component {
                 >
                 </input>
                 <button
-                    className={css(styles.button)}
                     onClick={this.login}
                 >Sign in
                 </button>
@@ -79,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: () => dispatch(login()),
+        login: (token) => dispatch(login(token)),
     };
 }
 
