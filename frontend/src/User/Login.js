@@ -22,7 +22,6 @@ class Login extends Component {
                 username,
                 password,
             }).then((res) => {
-                console.log(res);
                 this.props.login(res.data.token, res.data.username);
             });
         }

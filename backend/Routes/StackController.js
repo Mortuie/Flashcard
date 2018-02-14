@@ -16,7 +16,7 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/newstack', VerifyToken, (req, res) => {
-
+    console.log(req.body);
     Stack.create({
         name: req.body.name,
         cards: req.body.cards,
@@ -30,10 +30,8 @@ router.post('/newstack', VerifyToken, (req, res) => {
 });
 
 router.post('/getstacks', VerifyToken, (req, res) => {
-
     Stack.find({username: req.body.username}, (err, stacks) => {
         if (err) return res.status(400).send('Error finding stacks');
-
         res.json(stacks);
     });
 });

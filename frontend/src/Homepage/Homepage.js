@@ -1,23 +1,42 @@
 import React, {Component} from 'react';
 import {response} from '../Requests/FlashcardStacks';
 import {css, StyleSheet} from 'aphrodite';
+import axios from 'axios';
+import {connect} from 'react-redux';
 
+class Homepage extends Component {
 
-export default class Homepage extends Component {
+    state = {
+        stacks: null,
+    };
+
+    componentWillMount() {
+
+        const axiosConfig = {
+            headers: {
+                'x-access-token': this.props.token,
+        }};
+
+        const data = {
+            username: this.props.username,
+        };
+
+        axios.post('/api/stack/getstacks', {
+            username: this.props.username,
+        }, axiosConfig)
+        .then(res => this.setState({stacks: res.data}));
+    }
 
     render() {
-        console.log(response["stacks"]);
-        response["stacks"].map(item => console.log(item.name));
+        console.log(this.state.stacks);
 
         return (
             <div>
                 
-                {
-                    response["stacks"].map(item => (
+                {this.state.stacks && 
+                    this.state.stacks.map(item => (
                         <div className={css(styles.container)}>
                             <div>{item.name}</div>
-                            <div>{item.desc}</div>
-                            <div>{item.cards}</div>
                         </div>
 
                     ))
@@ -37,3 +56,12 @@ const styles = StyleSheet.create({
         border: "1px solid black",
     },
 });
+
+const mapStateToProps = state => {
+    return {
+        token: state.user.token,
+        username: state.user.username,
+    };
+};
+
+export default connect(mapStateToProps)(Homepage);
