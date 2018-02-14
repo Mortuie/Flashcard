@@ -23,7 +23,7 @@ class Login extends Component {
                 password,
             }).then((res) => {
                 console.log(res);
-                this.props.login(res.data.token);
+                this.props.login(res.data.token, res.data.username);
             });
         }
     }
@@ -89,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (token) => dispatch(login(token)),
+        login: (token, username) => dispatch(login(token, username)),
     };
 }
 

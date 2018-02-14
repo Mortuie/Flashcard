@@ -21,7 +21,7 @@ export default class Newstack extends Component {
                 <input placeholder='front' onChange={e => this.setState({frontText: e.target.value})}></input>
                 <div>FRONT OUTPUT</div>
                 <Text data={this.state.frontText} />
-                <input placeholder='back' onChange={e => this.setState({backText: e.target.value})}></input>
+                <input placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></input>
                 <div>BACK OUTPUT</div>
                 <Text data={this.state.backText} />
                 <button onClick={this.addCard}>Next card</button>

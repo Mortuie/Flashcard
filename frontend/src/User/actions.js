@@ -2,10 +2,11 @@ export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
 
 
-export function login(token) {
+export function login(token, username) {
     return {
         type: LOGIN,
         token,
+        username,
     };
 }
 

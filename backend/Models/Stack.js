@@ -11,6 +11,10 @@ var StackSchema = new mongoose.Schema({
         type: Array,
         required: true,
     },
+    username: {
+        type: String,
+        required: true,
+    }
 });
 
 mongoose.model('Stack', StackSchema);

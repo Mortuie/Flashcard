@@ -11,9 +11,10 @@ db.once('open', () => console.log('DB Connected'));
 
 var PORT = process.env.PORT;
 var Authcontroller = require('./backend/authentication/Authcontroller');
+var StackController = require('./backend/Routes/StackController');
 
 app.use('/api/auth', Authcontroller);
-
+app.use('/api/stack', StackController);
 
 
 

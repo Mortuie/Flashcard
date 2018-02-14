@@ -5,14 +5,12 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 
-var User = require('../models/User');
+var User = require('../Models/User');
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 
 var VerifyToken = require('./VerifyToken');
-
-User.remove();
 
 router.post('/register', (req, res) => {
     var hashedPassword = bcrypt.hashSync(req.body.password, 10);
@@ -27,22 +25,11 @@ router.post('/register', (req, res) => {
         var token = jwt.sign({id: user.id}, process.env.SECRET_KEY, {
             expiresIn: 86400,
         });
-        console.log(req.body.name);
         res.status(200).send({auth: true, token: token});
     });
 
 
 });
-
-router.get('/me', VerifyToken, (req, res) => {
-
-    User.findById(req.userId, { password: 0 }, function (err, user) {
-      if (err) return res.status(500).send("There was a problem finding the user.");
-      if (!user) return res.status(404).send("No user found.");
-      res.status(200).send(user);
-    });
-  
-  });
 
 router.get('/all', (req, res) => {
     User.find({}, (err, user) => {
@@ -64,7 +51,7 @@ router.post('/login', (req, res) => {
             expiresIn: 86400,
         });
 
-        res.status(200).send({auth: true, token});
+        res.status(200).send({auth: true, token, username: req.body.username});
 
 
     });
