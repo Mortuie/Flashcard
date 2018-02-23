@@ -3,6 +3,7 @@ import {response} from '../Requests/FlashcardStacks';
 import {css, StyleSheet} from 'aphrodite';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class Homepage extends Component {
 
@@ -32,17 +33,17 @@ class Homepage extends Component {
 
         return (
             <div>
-                
-                {this.state.stacks && 
+
+                {this.state.stacks &&
                     this.state.stacks.map(item => (
-                        <div className={css(styles.container)}>
+                        <div className={css(styles.container)} onClick={() => this.props.history.push("/view/" + item.name)} key={item.name}>
                             <div>{item.name}</div>
                         </div>
 
                     ))
                 }
-            
-            
+
+
             </div>
         );
     }
@@ -62,6 +63,10 @@ const mapStateToProps = state => {
         token: state.user.token,
         username: state.user.username,
     };
+};
+
+const mapDispatchToProps = dispatch => {
+    return null;
 };
 
 export default connect(mapStateToProps)(Homepage);
