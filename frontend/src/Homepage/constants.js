@@ -1,0 +1,2 @@
+export const POPULATE_STACKS = 'POPULATE_STACKS';
+export const REMOVE_STACKS = 'REMOVE_STACKS';
