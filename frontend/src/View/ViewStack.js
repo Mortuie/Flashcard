@@ -58,7 +58,7 @@ class ViewStack extends Component {
         if (newIndex >= this.state.stack.length) newIndex = 0;
         else if (newIndex < 0) newIndex = this.state.stack.length - 1;
 
-        this.setState({currentIndex: newIndex});
+        this.setState({currentIndex: newIndex, front: true});
     }
 
     getCurrentView() {
