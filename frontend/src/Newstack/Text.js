@@ -1,4 +1,4 @@
 import React, {Component} from 'react';
-var Latex = require('react-latex');
+import Tex from './Tex';
 
-export default (props) => <Latex>{props.data}</Latex>;
+export default (props) => <Tex data={props.data} />

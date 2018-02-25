@@ -14,8 +14,10 @@ class Newstack extends Component {
     };
 
     addCard = () => {
-        this.state.newStack.push([this.state.frontText, this.state.backText]);
-        this.setState({frontText: '', backText: ''});
+        if (this.state.frontText && this.state.backText) {
+            this.state.newStack.push([this.state.frontText, this.state.backText]);
+            this.setState({frontText: '', backText: ''});
+        }
     }
 
     addStack = () => {
@@ -53,7 +55,7 @@ class Newstack extends Component {
                 <CardComponent>
                     <Title>Back Card:</Title>
                     <InputDisplay>
-                        <input placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></input>
+                        <Input placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></Input>
                         <Text data={this.state.backText} />
                     </InputDisplay>
                 </CardComponent>
