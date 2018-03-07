@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled, {css} from 'styled-components';
+import {Tex, TexText} from '../Newstack';
 
 const Wrapper = styled.div`
-    width: 400px;
+    width: 80%;
     height: 300px;
     margin: auto;
     margin-top: 100px;
-    background-color: grey;
+    background-color: white;
 `;
 
 const Button = styled.button`
@@ -15,18 +16,18 @@ const Button = styled.button`
     height: 25px;
 `;
 
-const Card = styled.div`
-    background-color: black;
-    width: 75%;
-    color: white;
-`;
 
 const CardWrapper = styled.div`
     width: 100%;
     height: 90%;
     display: flex;
+    backgroundColor: white;
 `;
 
+const ButtonWrapper = styled.div`
+    display: flex;
+
+`;
 
 class ViewStack extends Component {
 
@@ -86,12 +87,13 @@ class ViewStack extends Component {
         return (
             <Wrapper>
                 <CardWrapper>
-                    <Button onClick={() => this.newCard(-1)}>Previous</Button>
-                    <Card>{text}</Card>
-                    <Button onClick={() => this.newCard(1)}>Next</Button>
+                    <Tex data={text} view></Tex>
                 </CardWrapper>
 
-                   <Button onClick={() => this.flipCard()}>Flip Card</Button>
+                <TexText>What is $(3\times 4) \div (5-3)$</TexText>
+                <Button onClick={() => this.newCard(-1)}>Previous</Button>
+                <Button onClick={() => this.flipCard()}>Flip Card</Button>
+                <Button onClick={() => this.newCard(1)}>Next</Button>
             </Wrapper>
         );
     }

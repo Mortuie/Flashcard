@@ -6,10 +6,16 @@ var app = express();
 var mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URI);
 var db = mongoose.connection;
-db.on('error', (err) => console.log(err));
+var PORT = process.env.PORT;
+
+
+db.on('error', (err) => {
+    console.log(err);
+    process.exit();
+});
+
 db.once('open', () => console.log('DB Connected'));
 
-var PORT = process.env.PORT;
 var Authcontroller = require('./backend/authentication/Authcontroller');
 var StackController = require('./backend/Routes/StackController');
 

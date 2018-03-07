@@ -104,7 +104,7 @@ const InputDisplay = styled.div`
     height: 100%;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
     height: 30px;
     font-size: 23px;
     border: none;
