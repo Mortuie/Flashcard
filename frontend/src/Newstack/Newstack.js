@@ -10,6 +10,7 @@ class Newstack extends Component {
         stackName: '',
         frontText: '',
         backText: '',
+        errorMessage: '',
         newStack: [],
     };
 
@@ -23,29 +24,32 @@ class Newstack extends Component {
     saveStack = () => {
         var cards = this.state.newStack;
 
-        axios.post('api/stack/newstack', {
-            name: this.state.stackName,
-            cards,
-            username: this.props.username,
-        }, {
-            headers: {
-                'x-access-token': this.props.token,
-         }})
-        .then(res => {
-            console.log(res);
-            this.props.history.push("/stacks");
-        })
-        .catch(err => console.log(err));
+        if (this.state.stackName) {
+            axios.post('api/stack/newstack', {
+                name: this.state.stackName,
+                cards,
+                username: this.props.username,
+            }, {
+                headers: {
+                    'x-access-token': this.props.token,
+                }})
+            .then(res => {
+                console.log(res);
+                this.props.history.push("/stacks");
+            })
+            .catch(err => console.log(err));
+        } else {
+            this.setState({errorMessage: 'No name set'});
+        }
     }
 
     render() {
-        console.log(this.props);
         return (
             <Wrapper>
                 <TopBar>
-                    <div>Name: </div> 
-                    <Input placeholder='name' onChange={e => this.setState({stackName: e.target.value})} value={this.state.stackName}></Input>
-                    <button onClick={this.saveStack}>Save stack</button>
+                    <Input name placeholder='Name of Stack' onChange={e => this.setState({stackName: e.target.value})} value={this.state.stackName}></Input>
+                    <SaveButton onClick={this.saveStack}>Save stack</SaveButton>
+                    <div>{this.state.errorMessage}</div>
                 </TopBar>
 
                 <CardComponent>
@@ -105,6 +109,7 @@ const CardComponent = styled.div`
 
 const InputDisplay = styled.div`
     display: flex;
+    flex-wrap: wrap;
     height: 100%;
 `;
 
@@ -119,6 +124,20 @@ const Input = styled.textarea`
     
     `}
 
+    ${props => props.name && css `
+        font-size: 23px;
+        height: 25px;
+        width: 300px;
+    `}
+`;
+
+const SaveButton = styled.button`
+    border: none;
+    height: 25px;
+    width: 150px;
+    font-size: 23px;
+    background-color: #f44242;
+    color: white;
 `;
 
 const Title = styled.div`
