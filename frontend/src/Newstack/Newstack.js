@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Text from './Text';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import styled, {css} from 'styled-components';
+import KatexComponent from 'react-katex-component';
 
 class Newstack extends Component {
 
@@ -20,7 +20,7 @@ class Newstack extends Component {
         }
     }
 
-    addStack = () => {
+    saveStack = () => {
         var cards = this.state.newStack;
 
         axios.post('api/stack/newstack', {
@@ -31,7 +31,10 @@ class Newstack extends Component {
             headers: {
                 'x-access-token': this.props.token,
          }})
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res);
+            this.props.history.push("/stacks");
+        })
         .catch(err => console.log(err));
     }
 
@@ -40,27 +43,30 @@ class Newstack extends Component {
         return (
             <Wrapper>
                 <TopBar>
+                    <div>Name: </div> 
                     <Input placeholder='name' onChange={e => this.setState({stackName: e.target.value})} value={this.state.stackName}></Input>
-                    <button onClick={this.addStack}>Save stack</button>
+                    <button onClick={this.saveStack}>Save stack</button>
                 </TopBar>
 
                 <CardComponent>
                     <Title>Front Card:</Title>
                     <InputDisplay>
-                        <input placeholder='front' onChange={e => this.setState({frontText: e.target.value})} value={this.state.frontText}></input>
-                        <Text data={this.state.frontText} />
+                        <Input  cards placeholder='front' onChange={e => this.setState({frontText: e.target.value})} value={this.state.frontText} />
+                        <KatexComponent data={this.state.frontText} />
                     </InputDisplay>
                 </CardComponent>
 
                 <CardComponent>
                     <Title>Back Card:</Title>
                     <InputDisplay>
-                        <Input placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></Input>
-                        <Text data={this.state.backText} />
+                        <Input cards placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></Input>
+                        <KatexComponent data={this.state.backText} />
                     </InputDisplay>
                 </CardComponent>
 
-                <button onClick={this.addCard}>Next card</button>
+                <Center>
+                    <button onClick={this.addCard}>Next card</button>
+                </Center>
             </Wrapper>
         );
     }
@@ -78,7 +84,6 @@ export default connect(mapStateToProps)(Newstack);
 const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
-    background-color: black;
 `;
 
 const TopBar = styled.div`
@@ -91,8 +96,7 @@ const TopBar = styled.div`
 
 const CardComponent = styled.div`
     width: 100%;
-    height: 200px;
-    background-color: grey;
+    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,12 +109,27 @@ const InputDisplay = styled.div`
 `;
 
 const Input = styled.textarea`
-    height: 30px;
-    font-size: 23px;
+    font-size: 15px;
+    resize: none;
     border: none;
+
+    ${props => props.cards && css`
+        height: 320px;
+        width: 320px;
+    
+    `}
+
 `;
 
 const Title = styled.div`
     font-size: 20px;
 
+`;
+
+const Center = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 `;

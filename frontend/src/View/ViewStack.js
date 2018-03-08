@@ -1,33 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled, {css} from 'styled-components';
-import {Tex, TexText} from '../Newstack';
-
-const Wrapper = styled.div`
-    width: 80%;
-    height: 300px;
-    margin: auto;
-    margin-top: 100px;
-    background-color: white;
-`;
-
-const Button = styled.button`
-    width: 75px;
-    height: 25px;
-`;
-
-
-const CardWrapper = styled.div`
-    width: 100%;
-    height: 90%;
-    display: flex;
-    backgroundColor: white;
-`;
-
-const ButtonWrapper = styled.div`
-    display: flex;
-
-`;
+import KatexComponent from 'react-katex-component';
 
 class ViewStack extends Component {
 
@@ -86,18 +60,47 @@ class ViewStack extends Component {
         }
         return (
             <Wrapper>
-                <CardWrapper>
-                    <Tex data={text} view></Tex>
-                </CardWrapper>
+                <div>Stack name: {this.state.name}</div>
+                <div>Current Card: {(this.state.currentIndex + 1) + "/" + this.state.stack.length}</div>
+                <KatexComponent data={text}></KatexComponent>
 
-                <TexText>What is $(3\times 4) \div (5-3)$</TexText>
-                <Button onClick={() => this.newCard(-1)}>Previous</Button>
-                <Button onClick={() => this.flipCard()}>Flip Card</Button>
-                <Button onClick={() => this.newCard(1)}>Next</Button>
+                <ButtonWrapper>
+                    <Button onClick={() => this.newCard(-1)}>Previous</Button>
+                    <Button onClick={() => this.flipCard()}>Flip Card</Button>
+                    <Button onClick={() => this.newCard(1)}>Next</Button>
+                </ButtonWrapper>
             </Wrapper>
         );
     }
 }
+
+const Wrapper = styled.div`
+    width: 80%;
+    height: 300px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Button = styled.button`
+    width: 75px;
+    height: 25px;
+`;
+
+const CardWrapper = styled.div`
+    width: 100%;
+    height: 90%;
+    display: flex;
+    backgroundColor: white;
+`;
+
+const ButtonWrapper = styled.div`
+    display: flex;
+
+`;
 
 const mapStateToProps = state => {
     return {

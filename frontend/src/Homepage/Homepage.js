@@ -1,23 +1,18 @@
 import React, {Component} from 'react';
-import {response} from '../Requests/FlashcardStacks';
-import {css, StyleSheet} from 'aphrodite';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {populateStacks} from './actions';
+import styled from 'styled-components';
 
 class Homepage extends Component {
-
-    state = {
-        stacks: null,
-    };
 
     componentWillMount() {
 
         const axiosConfig = {
             headers: {
                 'x-access-token': this.props.token,
-        }};
+            }
+        };
 
         axios.post('/api/stack/getstacks', {
             username: this.props.username,
@@ -28,31 +23,37 @@ class Homepage extends Component {
     render() {
 
         return (
-            <div>
+            <Container>
 
                 {this.props.stacks &&
                     this.props.stacks.map(item => (
-                        <div className={css(styles.container)} onClick={() => this.props.history.push("/view/" + item.name)} key={item.name}>
+                        <Card onClick={() => this.props.history.push("/view/" + item.name)} key={item.name}>
                             <div>{item.name}</div>
-                        </div>
+                        </Card>
 
                     ))
                 }
 
 
-            </div>
+            </Container>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        width: 200,
-        height: 200,
-        margin: 10,
-        border: "1px solid black",
-    },
-});
+const Card = styled.div`
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 1px solid black;
+
+`;
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+`;
 
 const mapStateToProps = state => {
     return {

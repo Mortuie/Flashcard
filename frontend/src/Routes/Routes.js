@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 import {Newstack} from '../Newstack';
 import {ViewStack} from '../View';
 
-
 class Routes extends Component {
     render() {
         return (
