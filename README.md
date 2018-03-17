@@ -1,5 +1,5 @@
 # Flashcard
-
+Flashcard application made for you.
 
 ## User stories
 - Can register a unique account
