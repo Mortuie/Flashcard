@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import styled, {css} from 'styled-components';
-import KatexComponent from 'react-katex-component';
+//import {KatexComponent} from 'react-katex-component';
 
 class Newstack extends Component {
 
@@ -44,6 +44,7 @@ class Newstack extends Component {
     }
 
     render() {
+        //<KatexComponent data={this.state.frontText} />
         return (
             <Wrapper>
                 <TopBar>
@@ -56,7 +57,6 @@ class Newstack extends Component {
                     <Title>Front Card:</Title>
                     <InputDisplay>
                         <Input  cards placeholder='front' onChange={e => this.setState({frontText: e.target.value})} value={this.state.frontText} />
-                        <KatexComponent data={this.state.frontText} />
                     </InputDisplay>
                 </CardComponent>
 
@@ -64,7 +64,6 @@ class Newstack extends Component {
                     <Title>Back Card:</Title>
                     <InputDisplay>
                         <Input cards placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></Input>
-                        <KatexComponent data={this.state.backText} />
                     </InputDisplay>
                 </CardComponent>
 
@@ -121,7 +120,7 @@ const Input = styled.textarea`
     ${props => props.cards && css`
         height: 320px;
         width: 320px;
-    
+
     `}
 
     ${props => props.name && css `
