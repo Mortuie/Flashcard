@@ -6,6 +6,7 @@ var app = express();
 var mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URI);
 var db = mongoose.connection;
+var path = require('path');
 var PORT = process.env.PORT;
 
 
@@ -18,6 +19,12 @@ db.once('open', () => console.log('DB Connected'));
 
 var Authcontroller = require('./backend/authentication/Authcontroller');
 var StackController = require('./backend/Routes/StackController');
+
+app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+});
 
 app.use('/api/auth', Authcontroller);
 app.use('/api/stack', StackController);
