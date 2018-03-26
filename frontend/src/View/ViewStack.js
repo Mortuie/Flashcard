@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styled, {css} from 'styled-components';
 // import KatexComponent from 'react-katex-component';
+import {KatexComponent} from '../KatexComponent';
 
 class ViewStack extends Component {
 
@@ -59,11 +60,11 @@ class ViewStack extends Component {
             var text = this.getCurrentView();
         }
         return (
-            //<KatexComponent data={text}></KatexComponent>
             <Wrapper>
-                <div>Stack name: {this.state.name}</div>
-                <div>Current Card: {(this.state.currentIndex + 1) + "/" + this.state.stack.length}</div>
+            <div>Stack name: {this.state.name}</div>
+            <div>Current Card: {(this.state.currentIndex + 1) + "/" + this.state.stack.length}</div>
 
+            <KatexComponent data={text}></KatexComponent>
                 <ButtonWrapper>
                     <Button onClick={() => this.newCard(-1)}>Previous</Button>
                     <Button onClick={() => this.flipCard()}>Flip Card</Button>

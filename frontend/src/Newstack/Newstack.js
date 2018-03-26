@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import styled, {css} from 'styled-components';
-//import {KatexComponent} from 'react-katex-component';
+import {KatexComponent} from '../KatexComponent';
 
 class Newstack extends Component {
 
@@ -44,19 +44,19 @@ class Newstack extends Component {
     }
 
     render() {
-        //<KatexComponent data={this.state.frontText} />
         return (
             <Wrapper>
-                <TopBar>
-                    <Input name placeholder='Name of Stack' onChange={e => this.setState({stackName: e.target.value})} value={this.state.stackName}></Input>
-                    <SaveButton onClick={this.saveStack}>Save stack</SaveButton>
-                    <div>{this.state.errorMessage}</div>
-                </TopBar>
+            <TopBar>
+            <Input name placeholder='Name of Stack' onChange={e => this.setState({stackName: e.target.value})} value={this.state.stackName}></Input>
+            <SaveButton onClick={this.saveStack}>Save stack</SaveButton>
+            <div>{this.state.errorMessage}</div>
+            </TopBar>
 
-                <CardComponent>
-                    <Title>Front Card:</Title>
-                    <InputDisplay>
-                        <Input  cards placeholder='front' onChange={e => this.setState({frontText: e.target.value})} value={this.state.frontText} />
+            <CardComponent>
+                <Title>Front Card:</Title>
+                <InputDisplay>
+                    <Input  cards placeholder='front' onChange={e => this.setState({frontText: e.target.value})} value={this.state.frontText} />
+                    <KatexComponent data={this.state.frontText} />
                     </InputDisplay>
                 </CardComponent>
 
@@ -64,6 +64,7 @@ class Newstack extends Component {
                     <Title>Back Card:</Title>
                     <InputDisplay>
                         <Input cards placeholder='back' onChange={e => this.setState({backText: e.target.value})} value={this.state.backText}></Input>
+                        <KatexComponent data={this.state.backText} />
                     </InputDisplay>
                 </CardComponent>
 
